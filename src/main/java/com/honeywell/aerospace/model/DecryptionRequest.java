@@ -2,7 +2,7 @@ package com.honeywell.aerospace.model;
 
 public class DecryptionRequest {
     private String encryptedData;
-    private String encodedKey;
+    private String symmetricKey;
 
     // Getters and setters
     public String getEncryptedData() {
@@ -13,11 +13,11 @@ public class DecryptionRequest {
         this.encryptedData = encryptedData;
     }
 
-    public String getEncodedKey() {
-        return encodedKey;
+    public String getSymmetricKey() {
+        return symmetricKey;
     }
 
-    public void setEncodedKey(String encodedKey) {
-        this.encodedKey = encodedKey;
+    public void setSymmetricKey(String encodedKey) {
+        this.symmetricKey = encodedKey;
     }
 }
