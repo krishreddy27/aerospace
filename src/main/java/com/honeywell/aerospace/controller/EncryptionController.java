@@ -2,6 +2,7 @@ package com.honeywell.aerospace.controller;
 
 import com.honeywell.aerospace.model.DecryptionRequest;
 import com.honeywell.aerospace.service.EncryptionService;
+import com.honeywell.aerospace.service.IEncryptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,14 +15,15 @@ import java.util.Map;
 @Controller
 @RequestMapping("/rest/honeywell")
 public class EncryptionController {
-    private final EncryptionService encryptionService;
+    private final IEncryptionService encryptionService;
 
     @Autowired
-    EncryptionController(EncryptionService encryptionService) {
+    EncryptionController(IEncryptionService encryptionService) {
         this.encryptionService = encryptionService;
     }
 
     @GetMapping("/encrypt/{name}")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<Map<String, String>> encrypt(@PathVariable String name) {
         try {
             SecretKey key = encryptionService.generateKey();
@@ -39,6 +41,7 @@ public class EncryptionController {
     }
 
     @PostMapping("/decrypt")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<String> decrypt(@RequestBody DecryptionRequest request) {
         try {
             SecretKey key = encryptionService.decodeKey(request.getEncodedKey());
