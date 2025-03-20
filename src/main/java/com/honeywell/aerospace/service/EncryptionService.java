@@ -9,7 +9,7 @@ import java.util.Base64;
 import org.springframework.stereotype.Service;
 
 @Service
-public class EncryptionService {
+public class EncryptionService implements IEncryptionService{
 
     private static final String ALGORITHM = "AES";
 
